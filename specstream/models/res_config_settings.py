@@ -6,6 +6,6 @@ class ResConfigSettings(models.TransientModel):
 
     specstream_api_key = fields.Char(
         string="SpecStream API key",
-        config_parameter="specstream_leads.api_key",
-        help="Create one under Agents & API at https://specstream.ai/workspace",
+        config_parameter="specstream.api_key",
+        help="Create one under Agents & API at https://specstream.ai/workspace.",
     )

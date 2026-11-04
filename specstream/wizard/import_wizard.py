@@ -20,26 +20,26 @@ def _get(path, key):
         with urllib.request.urlopen(request, timeout=30) as response:
             payload = json.loads(response.read().decode())
     except urllib.error.HTTPError as error:
-        raise UserError(_("SpecStream answered %s. Check the API key and the list id.", error.code))
+        raise UserError(_("SpecStream returned error %s. Check the API key and the list id.", error.code))
     except (urllib.error.URLError, TimeoutError):
-        raise UserError(_("SpecStream could not be reached."))
+        raise UserError(_("Couldn't reach SpecStream. Check the connection and try again."))
     except ValueError:
-        raise UserError(_("SpecStream sent an answer that could not be read."))
+        raise UserError(_("Couldn't read the response from SpecStream. Try again in a moment."))
     return payload.get("data", payload)
 
 
 class SpecstreamImportWizard(models.TransientModel):
     _name = "specstream.import.wizard"
-    _description = "Import SpecStream rows as leads"
+    _description = "Import SpecStream rows as CRM leads"
 
-    find_id = fields.Char(string="SpecStream list id", required=True)
-    max_rows = fields.Integer(string="Most rows", default=200)
+    find_id = fields.Char(string="List id", required=True)
+    max_rows = fields.Integer(string="Maximum rows", default=200)
 
     def action_import(self):
         self.ensure_one()
-        key = self.env["ir.config_parameter"].sudo().get_param("specstream_leads.api_key")
+        key = self.env["ir.config_parameter"].sudo().get_param("specstream.api_key")
         if not key:
-            raise UserError(_("Add the SpecStream API key in Settings first."))
+            raise UserError(_("Add your SpecStream API key in Settings > SpecStream first."))
         find_id = urllib.parse.quote(self.find_id.strip(), safe="")
         rows, cursor = [], None
         while len(rows) < self.max_rows:
@@ -58,7 +58,7 @@ class SpecstreamImportWizard(models.TransientModel):
             "type": "ir.actions.act_window",
             "res_model": "crm.lead",
             "view_mode": "tree,form",
-            "name": _("SpecStream leads"),
+            "name": _("Leads from SpecStream"),
             "domain": [("id", "in", leads.ids)],
         }
 

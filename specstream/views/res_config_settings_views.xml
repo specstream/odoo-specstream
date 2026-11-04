@@ -6,9 +6,9 @@
         <field name="inherit_id" ref="crm.res_config_settings_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
-                <app string="SpecStream" name="specstream_leads">
+                <app string="SpecStream" name="specstream">
                     <block title="SpecStream">
-                        <setting string="API key" help="Used to read finished lists. Reading costs nothing.">
+                        <setting string="API key" help="Reads finished SpecStream lists. Reading a list costs nothing.">
                             <field name="specstream_api_key" password="True"/>
                         </setting>
                     </block>
