@@ -1,4 +1,4 @@
-# SpecStream for Odoo
+# SpecStream
 
 The live web data engine.
 
