@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="specstream_import_wizard_form" model="ir.ui.view">
+        <field name="name">specstream.import.wizard.form</field>
+        <field name="model">specstream.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import from SpecStream">
+                <group>
+                    <field name="find_id"/>
+                    <field name="max_rows"/>
+                </group>
+                <footer>
+                    <button string="Create leads" name="action_import" type="object" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="specstream_import_wizard_action" model="ir.actions.act_window">
+        <field name="name">Import from SpecStream</field>
+        <field name="res_model">specstream.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="specstream_import_menu" name="Import from SpecStream"
+              parent="crm.crm_menu_sales" action="specstream_import_wizard_action" sequence="90"/>
+</odoo>

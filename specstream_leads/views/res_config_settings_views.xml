@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_specstream" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.specstream</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="crm.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="SpecStream" name="specstream_leads">
+                    <block title="SpecStream">
+                        <setting string="API key" help="Used to read finished lists. Reading costs nothing.">
+                            <field name="specstream_api_key" password="True"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>
