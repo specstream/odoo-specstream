@@ -6,6 +6,8 @@ One platform to build, search, extract, enrich, map, and monitor data across the
 
 Ask for any dataset in plain words, and SpecStream builds it from the entire live web: every match found, extracted and enriched into structured records, then monitored for change. It runs through the API and MCP, and inside Sheets, CRMs, Slack, n8n, Zapier and the other tools teams already use.
 
+
+Three products: the Search API (`GET /v1/web-search`, $5 per 1,000 searches, the most accurate web search API in the world), the Extract API (`POST /v1/extract`, up to 20 URLs a call for web pages, PDF, Word and Excel at $0.80 per 1,000 pages, empty pages free) and Deep Search (structured rows, priced per row). Source URL and read time on every value.
 ## What the module does
 
 - Creates CRM leads from the rows of a finished SpecStream list.

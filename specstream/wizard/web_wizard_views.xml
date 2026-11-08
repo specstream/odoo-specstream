@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="specstream_search_wizard_form" model="ir.ui.view">
+        <field name="name">specstream.search.wizard.form</field>
+        <field name="model">specstream.search.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Search the web">
+                <group>
+                    <field name="query"/>
+                    <field name="result"/>
+                </group>
+                <footer>
+                    <button string="Search" name="action_search" type="object" class="btn-primary"/>
+                    <button string="Close" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="specstream_search_wizard_action" model="ir.actions.act_window">
+        <field name="name">Search the web</field>
+        <field name="res_model">specstream.search.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="specstream_search_menu" name="Search the web (SpecStream)"
+              parent="crm.crm_menu_sales" action="specstream_search_wizard_action" sequence="91"/>
+
+    <record id="specstream_extract_wizard_form" model="ir.ui.view">
+        <field name="name">specstream.extract.wizard.form</field>
+        <field name="model">specstream.extract.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Extract pages">
+                <group>
+                    <field name="urls"/>
+                    <field name="output_format"/>
+                    <field name="result"/>
+                </group>
+                <footer>
+                    <button string="Extract" name="action_extract" type="object" class="btn-primary"/>
+                    <button string="Close" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="specstream_extract_wizard_action" model="ir.actions.act_window">
+        <field name="name">Extract pages</field>
+        <field name="res_model">specstream.extract.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="specstream_extract_menu" name="Extract pages (SpecStream)"
+              parent="crm.crm_menu_sales" action="specstream_extract_wizard_action" sequence="92"/>
+</odoo>
