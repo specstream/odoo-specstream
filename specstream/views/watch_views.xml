@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="specstream_watch_tree" model="ir.ui.view">
+        <field name="name">specstream.watch.tree</field>
+        <field name="model">specstream.watch</field>
+        <field name="arch" type="xml">
+            <tree string="Watched lists">
+                <field name="name"/>
+                <field name="find_id"/>
+                <field name="schedule_id" optional="show"/>
+                <field name="interval"/>
+                <field name="next_check"/>
+                <field name="last_check"/>
+                <field name="last_status"/>
+                <field name="active" column_invisible="True"/>
+            </tree>
+        </field>
+    </record>
+    <record id="specstream_watch_form" model="ir.ui.view">
+        <field name="name">specstream.watch.form</field>
+        <field name="model">specstream.watch</field>
+        <field name="arch" type="xml">
+            <form string="Watched list">
+                <header>
+                    <button string="Check now" name="action_check_now" type="object" class="btn-primary"/>
+                    <button string="Run the schedule now" name="action_run_schedule" type="object"
+                            invisible="not schedule_id"
+                            confirm="This starts one run of your SpecStream schedule now. It is charged inside the limits you approved for that schedule in SpecStream. Continue?"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_changes" type="object" class="oe_stat_button" icon="fa-history">
+                            <field name="change_count" string="Changes" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="find_id"/>
+                            <field name="schedule_id"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="interval"/>
+                            <field name="max_rows"/>
+                            <field name="create_leads"/>
+                            <field name="next_check"/>
+                        </group>
+                    </group>
+                    <group string="Last check">
+                        <field name="last_check"/>
+                        <field name="last_find_id"/>
+                        <field name="last_status"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="specstream_watch_action" model="ir.actions.act_window">
+        <field name="name">Watched lists</field>
+        <field name="res_model">specstream.watch</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="specstream_change_tree" model="ir.ui.view">
+        <field name="name">specstream.change.tree</field>
+        <field name="model">specstream.change</field>
+        <field name="arch" type="xml">
+            <tree string="Changes" create="0" edit="0">
+                <field name="create_date" string="Found"/>
+                <field name="watch_id"/>
+                <field name="row_name"/>
+                <field name="kind"/>
+                <field name="field"/>
+                <field name="old_value"/>
+                <field name="new_value"/>
+                <field name="source" widget="url"/>
+                <field name="lead_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="specstream_change_search" model="ir.ui.view">
+        <field name="name">specstream.change.search</field>
+        <field name="model">specstream.change</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="row_name"/>
+                <field name="watch_id"/>
+                <filter name="new" string="New results" domain="[('kind', '=', 'new')]"/>
+                <filter name="changed" string="Changed values" domain="[('kind', '=', 'changed')]"/>
+                <filter name="gone" string="No longer in the list" domain="[('kind', '=', 'gone')]"/>
+                <group expand="0" string="Group by">
+                    <filter name="by_watch" string="Watched list" context="{'group_by': 'watch_id'}"/>
+                    <filter name="by_kind" string="Change" context="{'group_by': 'kind'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="specstream_change_action" model="ir.actions.act_window">
+        <field name="name">Changes</field>
+        <field name="res_model">specstream.change</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="specstream_watch_menu" name="Watched lists (SpecStream)"
+              parent="crm.crm_menu_sales" action="specstream_watch_action" sequence="93"/>
+    <menuitem id="specstream_change_menu" name="Changes (SpecStream)"
+              parent="crm.crm_menu_sales" action="specstream_change_action" sequence="94"/>
+</odoo>

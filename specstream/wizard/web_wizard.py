@@ -40,6 +40,13 @@ class SpecstreamSearchWizard(models.TransientModel):
     _description = "Search the web with SpecStream"
 
     query = fields.Char(string="Question", required=True, help="1 to 2,000 characters, in everyday words.")
+    # The Search API's speed. Left empty, no speed is sent and the API's default search runs.
+    speed = fields.Selection(
+        [("fast", "Fast: ranked results in about a second, $1 per 1,000 searches"), ("default", "Default: $5 per 1,000 searches")],
+        string="Speed",
+        help="Fast returns ranked results in about a second and costs $1 per 1,000 searches. "
+        "Left empty, the API's default search runs ($5 per 1,000 searches).",
+    )
     result = fields.Text(string="Answer and sources", readonly=True)
 
     def action_search(self):
@@ -47,7 +54,13 @@ class SpecstreamSearchWizard(models.TransientModel):
         q = (self.query or "").strip()
         if not q or len(q) > 2000:
             raise UserError(_("Enter a question between 1 and 2,000 characters."))
-        reply = _call("/v1/web-search?" + urllib.parse.urlencode({"q": q}), _key(self.env))
+        params = {"q": q}
+        speed = getattr(self, "speed", None) or ""
+        if speed not in ("", "fast", "default"):
+            raise UserError(_("Set Speed to Fast or Default, or leave it empty."))
+        if speed:
+            params["speed"] = speed
+        reply = _call("/v1/web-search?" + urllib.parse.urlencode(params), _key(self.env))
         lines = []
         answer = reply.get("answer")
         if isinstance(answer, dict) and answer.get("value"):

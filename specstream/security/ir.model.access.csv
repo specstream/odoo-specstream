@@ -2,3 +2,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_specstream_import_wizard,specstream.import.wizard,model_specstream_import_wizard,sales_team.group_sale_salesman,1,1,1,1
 access_specstream_search_wizard,specstream.search.wizard,model_specstream_search_wizard,sales_team.group_sale_salesman,1,1,1,1
 access_specstream_extract_wizard,specstream.extract.wizard,model_specstream_extract_wizard,sales_team.group_sale_salesman,1,1,1,1
+access_specstream_find_wizard,specstream.find.wizard,model_specstream_find_wizard,sales_team.group_sale_salesman,1,1,1,1
+access_specstream_watch_user,specstream.watch user,model_specstream_watch,sales_team.group_sale_salesman,1,1,1,1
+access_specstream_change_user,specstream.change user,model_specstream_change,sales_team.group_sale_salesman,1,0,0,0
+access_specstream_change_manager,specstream.change manager,model_specstream_change,sales_team.group_sale_manager,1,1,1,1

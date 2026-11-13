@@ -7,6 +7,7 @@
             <form string="Search the web">
                 <group>
                     <field name="query"/>
+                    <field name="speed"/>
                     <field name="result"/>
                 </group>
                 <footer>

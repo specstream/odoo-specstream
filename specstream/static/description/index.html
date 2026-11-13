@@ -7,13 +7,19 @@
   <ul>
     <li>Creates CRM leads from the rows of a finished SpecStream list.</li>
     <li>Keeps the source URL for every value in the lead description.</li>
-    <li>Reads finished lists only. It costs nothing and starts no search.</li>
+    <li>Importing a finished list costs nothing and starts no search.</li>
+    <li>Find rows: write what you need in everyday words, read the maximum price, and approve it. Nothing starts before you approve the price. The finished rows become leads, each value with its source URL.</li>
+    <li>Search the web and Extract pages call the Search API and the Extract API from CRM, then Sales. Set Speed to Fast on a search and a fast search costs $1 per 1,000; left empty, the API's default search runs.</li>
+    <li>Watched lists: reads a list again every hour, day or week, and records each new result, each changed value with its source URL and each result no longer in the list under CRM, then Sales, then Changes. Leads are created and updated from the same rows.</li>
+    <li>Scheduled runs: add the id of a schedule you approved in SpecStream, and each check reads the newest list that schedule finished. The module never creates a schedule or sets a spending limit.</li>
   </ul>
   <h2>How it works</h2>
   <ol>
     <li>Open Settings, then SpecStream, and paste an API key from your <a href="https://specstream.ai/workspace?utm_source=odoo">SpecStream workspace</a> (Agents &amp; API).</li>
     <li>Open CRM, then Sales, then Import from SpecStream. Paste the id of a finished list and set the maximum number of rows.</li>
     <li>Each row becomes a lead.</li>
+    <li>To build a new list, open CRM, then Sales, then Find rows (SpecStream). Write the request, choose Get the price, then Approve and start. When the list is finished, choose Create leads.</li>
+    <li>To follow a list, open CRM, then Sales, then Watched lists (SpecStream). Add the list id, optionally a SpecStream schedule id, and how often to check.</li>
   </ol>
   <p>New to SpecStream? <a href="https://specstream.ai?utm_source=odoo">Create an account at specstream.ai</a>.</p>
 </section>

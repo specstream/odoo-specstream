@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="ir_cron_specstream_watch" model="ir.cron">
+        <field name="name">SpecStream: check watched lists</field>
+        <field name="model_id" ref="model_specstream_watch"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_check_due()</field>
+        <field name="interval_number">15</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
+</odoo>
