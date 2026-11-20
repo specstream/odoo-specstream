@@ -11,7 +11,7 @@
         "Find rows, also under CRM > Sales, takes a request in everyday words, shows the maximum price, starts only after you approve that price, and turns the finished rows into leads. "
         "Watched lists read a list again every hour, day or week, or the newest list of a schedule you approved in SpecStream, and record each new result, changed value and source URL under CRM > Sales > Changes."
     ),
-    "version": "17.0.1.3.0",
+    "version": "18.0.1.3.0",
     "category": "Sales/CRM",
     "author": "SpecStream SAS",
     "website": "https://specstream.ai?utm_source=odoo",

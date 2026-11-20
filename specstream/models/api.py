@@ -17,7 +17,7 @@ def api_key(env):
 
 
 def call(path, key, body=None, method=None):
-    headers = {"Authorization": "Bearer " + key, "Accept": "application/json", "User-Agent": "specstream-odoo/17.0.1.2.0"}
+    headers = {"Authorization": "Bearer " + key, "Accept": "application/json", "User-Agent": "specstream-odoo/18.0.1.3.0"}
     data = None
     if body is not None:
         data = json.dumps(body).encode()

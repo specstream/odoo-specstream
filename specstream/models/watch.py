@@ -190,7 +190,7 @@ class SpecstreamWatch(models.Model):
         return {
             "type": "ir.actions.act_window",
             "res_model": "specstream.change",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "name": _("Changes"),
             "domain": [("watch_id", "=", self.id)],
         }

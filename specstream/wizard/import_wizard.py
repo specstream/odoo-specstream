@@ -44,7 +44,7 @@ def create_leads(env, find_id, max_rows):
     return {
         "type": "ir.actions.act_window",
         "res_model": "crm.lead",
-        "view_mode": "tree,form",
+        "view_mode": "list,form",
         "name": _("Leads from SpecStream"),
         "domain": [("id", "in", leads.ids)],
     }

@@ -18,7 +18,7 @@ Three products: the Search API (`GET /v1/web-search`, $5 per 1,000 searches of u
 - Watched lists: reads a list again every hour, day or week, and writes each new result, each changed value (before, now and its source URL) and each result no longer in the list to CRM > Sales > Changes. Leads are created and updated from the same rows.
 - Scheduled runs: add the id of a schedule you approved in SpecStream, and each check reads the newest list that schedule finished. The module never creates a schedule or sets a spending limit. Run the schedule now starts one run inside the limits you set in SpecStream.
 
-The module is for Odoo 17 and depends on CRM. Its technical name is `specstream`.
+The module is for Odoo 18 and depends on CRM. Its technical name is `specstream`.
 
 ## Setup
 
